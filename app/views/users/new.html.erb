@@ -1,0 +1,52 @@
+<h1>User Registration</h1>
+<%= form_with model: @user do |form| %>
+  <div>
+    <%= form.label :Name, "Name:" %>
+    <%= form.text_field :name %>
+  </div>
+  <br>
+  <div>
+    <%= form.label :Email, "Email:" %>
+    <%= form.email_field :email %>
+  </div>
+  <br>
+  <div>
+    <%= form.label :Phone_Number, "Phone Number:" %>
+    <%= form.telephone_field :phone_number %>
+  </div>
+  <br>
+  <div>
+    <%= form.label :Username, "Username:" %>
+    <%= form.text_field :username %>
+  </div>
+  <br>
+  <div>
+    <%= form.label :Password, "Password:" %>
+    <%= form.password_field :password%>
+  </div>
+  <br>
+  <div>
+    <%= form.label :Password_Confirmation, "Password_Confirmation:" %>
+    <%= form.password_field :password_confirmation %>
+  </div>
+  <br>
+  <div>
+    <%= form.label :Account_type, "Account_type:" %>
+    <%= form.text_field :account_type %>
+  </div>
+  <!-- <div>
+    <%= form.label :Profile_Image, "Profile_Image:" %>
+    <br>
+    <br>
+    <%= form.file_field :avatar %>
+  </div> -->
+  <br>
+  <br>
+  <div>
+    <%= form.submit "Submit" %>
+  </div>
+
+<% end %>
+
+
+
