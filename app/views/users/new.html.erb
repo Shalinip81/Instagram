@@ -1,5 +1,13 @@
 <h1>User Registration</h1>
-<%= form_with model: @user do |form| %>
+<%= form_with model: @user, data: { turbo: false } do |form| %>
+
+  <% if @user.errors.any? %>
+    <% @user.errors.full_messages.each do |message| %>
+       <li class="error"> <%= message %> </li>
+    <% end %>
+    <br>
+  <% end %>
+  <br>
   <div>
     <%= form.label :Name, "Name:" %>
     <%= form.text_field :name %>
@@ -34,12 +42,17 @@
     <%= form.label :Account_type, "Account_type:" %>
     <%= form.text_field :account_type %>
   </div>
-  <!-- <div>
+
+  <br>
+
+  <div>
     <%= form.label :Profile_Image, "Profile_Image:" %>
     <br>
     <br>
-    <%= form.file_field :avatar %>
-  </div> -->
+    <%= form.file_field :profile_picture %>
+  </div>
+
+
   <br>
   <br>
   <div>
@@ -47,6 +60,8 @@
   </div>
 
 <% end %>
+
+
 
 
 

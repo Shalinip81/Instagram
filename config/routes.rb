@@ -6,4 +6,9 @@ Rails.application.routes.draw do
 
   resources :users
   # post "/users/new", to: "users#new"
+  # resources :logins
+  get "/logins", to: "logins#create"
+
+
+
 end

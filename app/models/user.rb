@@ -1,5 +1,4 @@
 class User < ApplicationRecord
-  # has_one_attached :avatar
   validates :name, presence: true
   validates :email, uniqueness: true
   validates :phone_number, uniqueness: true ,length: { is: 10}
@@ -8,17 +7,20 @@ class User < ApplicationRecord
   validates :password_confirmation, presence: true
   enum :account_type, [:Private, :Public]
 
-  # validates_attachment :profile_picture, presence: true, size: { less_than: 2.megabytes }
-  # validate :avatar_format
+  has_one_attached :profile_picture
+  validate :avatar_size_validation
 
-  # private
-  #   def avatar_format
-  #     byebug
-  #       if avatar.blob.byte_size > 2.megabytes
-  #         errors.add(:avatar, 'size needs to be less than 2MB')
-  #         avatar.purge
-  #       else
-  #         resize_image
-  #       end
-  #   end
+  private
+
+    # def avatar_size_validation
+    #   byebug
+    #   errors.add[:profile_picture] << "should be less than 2MB" if profile_picture.byte_size > 2.megabytes
+    # end
+
+
+    def avatar_size_validation
+      if profile_picture.byte_size > 2.megabytes
+        errors.add(:profile_picture , message: "file size should be less than 2 MB")
+      end
+    end
 end
