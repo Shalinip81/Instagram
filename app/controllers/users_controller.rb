@@ -15,8 +15,8 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
-      # WelcomeMailer.create_mail(@user).deliver_now
-      redirect_to users_path
+      redirect_to @user
+      # render "logins#signup"
     else
       render :new
     end
@@ -36,7 +36,9 @@ class UsersController < ApplicationController
     end
   end
 
-  def abc
+  def destroy
+    @user.destroy
+    render json: { message: "Destroyed Successfully!"}
   end
 
 

@@ -1,22 +1,22 @@
 class LoginsController < ApplicationController
 
   def new
-    @user = User.find_by_username(params[:username])
+    @user=User.new
   end
 
   def create
-    byebug
-    @user = User.find_by_username(params[:username])
-    if @user.username == params[:username] && @user.password == params[:password]
-      render :show
+    # byebug
+    @user=User.find_by_username(params[:username])
+    if @user.nil?
+      flash.alert = "User not found."
+      render :new and return
+    else
+      if @user.password == params[:password]
+        redirect_to @user and return
+      end
+      render :new
     end
   end
 
-
-
-
-  private
-    def user_params
-      params.require(:user).permit(:username,:password)
-    end
 end
+

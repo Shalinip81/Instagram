@@ -11,13 +11,6 @@ class User < ApplicationRecord
   validate :avatar_size_validation
 
   private
-
-    # def avatar_size_validation
-    #   byebug
-    #   errors.add[:profile_picture] << "should be less than 2MB" if profile_picture.byte_size > 2.megabytes
-    # end
-
-
     def avatar_size_validation
       if profile_picture.byte_size > 2.megabytes
         errors.add(:profile_picture , message: "file size should be less than 2 MB")

@@ -1,16 +1,41 @@
-<h3> Login </h3>
-<%= form_with model:@login do |form| %>
-  <div>
-    <%= form.label :username %><br>
-    <%= form.text_field :username %>
-  </div>
-  <div>
-    <%= form.label :password %><br>
-    <%= form.password_field :password %><br>
-  </div>
+<% if @user.nil? %>
+  <% byebug %>
+  <% flash.each do |type ,msg| %>
+      <% byebug %>
+      <div>
+        <%= msg %>
+      </div>
+  <% end %>
+<% end %>
 
+
+<h1>User Login</h1>
+<%= form_with url: '/login' , data: { turbo: false } do |form| %>
   <br>
   <div>
-    <%= form.submit :login %><br>
+    <%= form.label :Username, "Username:" %>
+    <%= form.text_field :username %>
   </div>
+  <br>
+  <div>
+    <%= form.label :Password, "Password:" %>
+    <%= form.password_field :password%>
+  </div>
+  <br>
+
+  <br>
+  <br>
+  <div>
+    <%= form.submit "Login" %>
+  </div>
+
 <% end %>
+
+
+
+
+
+
+
+
+
