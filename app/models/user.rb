@@ -11,9 +11,14 @@ class User < ApplicationRecord
   validate :avatar_size_validation
 
   after_create :send_welcome_email
+  after_update :send_update_email
 
   def send_welcome_email
     UserMailer.welcome(self).deliver_now
+  end
+
+  def send_update_email
+    UpdateMailer.upemail(self).deliver_now
   end
 
   private
