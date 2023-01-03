@@ -10,10 +10,17 @@ class User < ApplicationRecord
   has_one_attached :profile_picture
   validate :avatar_size_validation
 
+  after_create :send_welcome_email
+
+  def send_welcome_email
+    UserMailer.welcome(self).deliver_now
+  end
+
   private
-    def avatar_size_validation
-      if profile_picture.byte_size > 2.megabytes
-        errors.add(:profile_picture , message: "file size should be less than 2 MB")
-      end
+
+  def avatar_size_validation
+    if profile_picture.byte_size > 2.megabytes
+      errors.add(:profile_picture , message: "file size should be less than 2 MB")
     end
+  end
 end

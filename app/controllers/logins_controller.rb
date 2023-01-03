@@ -14,6 +14,7 @@ class LoginsController < ApplicationController
       if @user.password == params[:password]
         redirect_to @user and return
       end
+      flash.alert = "password wrong"
       render :new
     end
   end

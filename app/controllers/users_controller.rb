@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+
   def index
     @users=User.all
     render :index
@@ -15,6 +16,8 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
+      byebug
+      # UserMailer.with(user: @user).welcome.deliver_now
       redirect_to @user
       # render "logins#signup"
     else
@@ -40,8 +43,6 @@ class UsersController < ApplicationController
     @user.destroy
     render json: { message: "Destroyed Successfully!"}
   end
-
-
 
   private
     def user_params
