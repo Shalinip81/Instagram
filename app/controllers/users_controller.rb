@@ -17,8 +17,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       byebug
-      # UserMailer.with(user: @user).welcome.deliver_now
-      redirect_to @user
+      redirect_to login_path
       # render "logins#signup"
     else
       render :new

@@ -1,0 +1,20 @@
+<h4> Welcome to Your Profile </h4>
+<%= image_tag @current_user.profile_picture ,size: "150"%>
+<div style="color:white;background-color: black;">
+<p>Name: <%= @current_user.name %></p>
+<p>Username: <%=@current_user.username %></p>
+<p>Email: <%=@current_user.email %></p>
+<p>Phone_Number: <%=@current_user.phone_number %></p>
+</div>
+<br>
+
+<div>
+  <%= link_to 'Followers', follower_path(token: @token) %>
+  <br> </br>
+  <%= link_to 'Following', following_path(token: @token) %>
+</div>
+<br>
+<div>
+  <%= link_to 'Create a new post',new_post_path(token: @token) %>
+</div>
+

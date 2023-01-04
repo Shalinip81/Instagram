@@ -8,9 +8,19 @@
   <% end %>
 <% end %>
 
+<% if @user.password != params[:password] %>
+  <% byebug %>
+  <% flash.each do |type ,msg| %>
+      <% byebug %>
+      <div>
+        <%= msg %>
+      </div>
+  <% end %>
+<% end %>
+
 
 <h1>User Login</h1>
-<%= form_with url: '/login' , data: { turbo: false } do |form| %>
+<%= form_with path:profile_path , data: { turbo: false } do |form| %>
   <br>
   <div>
     <%= form.label :Username, "Username:" %>
@@ -22,12 +32,13 @@
     <%= form.password_field :password%>
   </div>
   <br>
-
-  <br>
   <br>
   <div>
-    <%= form.submit "Login" %>
+    <%= button_to 'Login',profile_path(user: @user) %>
   </div>
+  <br>
+  <br>
+  <%= link_to "Signup" , new_user_path %>
 
 <% end %>
 
