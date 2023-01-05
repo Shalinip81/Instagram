@@ -25,8 +25,11 @@
         <%= image_tag f.profile_picture, size: "50" %>
       </td>
       <td>
-        <%= link_to 'Follow', manage_path(token: @token, user:f.id)%>
-        <%= link_to 'unfollow', deletem_path(token: @token, user:f.id)%>
+      <%if @current_user.followees.ids.include?(f.id) %>
+          <%= link_to 'unfollow', deletem_path(token: @token, user:f.id)%>
+      <%else %>
+          <%= link_to 'Follow', manage_path(token: @token, user:f.id)%>
+        <%end%>
       </td>
     </tr>
   <% end %>
