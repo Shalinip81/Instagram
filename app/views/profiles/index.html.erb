@@ -16,5 +16,23 @@
 <br>
 <div>
   <%= link_to 'Create a new post',new_post_path(token: @token) %>
+  <br>
+  <br>
+  <%=link_to 'Show all posts',allposts_path(token: @token) %>
 </div>
+<div>
+  <% byebug %>
+  <p> Posts: <%= @current_user.posts.count %> </p>
+</div>
+
+<div>
+  <% byebug %>
+  <p> Followers: <%= @current_user.followers.count %> </p>
+</div>
+<div>
+  <% byebug %>
+  <p> Following: <%= @current_user.followees.count %> </p>
+</div>
+<p><u>Search</u></p>
+<%= link_to 'Find User', search_path(token:@token) %>
 

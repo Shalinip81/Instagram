@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-
+  skip_before_action :expiration
   def index
     @users=User.all
     render :index

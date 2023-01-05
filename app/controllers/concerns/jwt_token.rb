@@ -11,7 +11,6 @@ module JwtToken
   end
 
   def self.jwt_decode(token)
-    byebug
     JWT.decode(token, SECRET_KEY, true)[0]
   end
 end

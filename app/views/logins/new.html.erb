@@ -6,16 +6,13 @@
         <%= msg %>
       </div>
   <% end %>
-<% end %>
-
-<% if @user.password != params[:password] %>
-  <% byebug %>
-  <% flash.each do |type ,msg| %>
+<% else @user.password != params[:password] %>
+    <% flash.each do |type ,msg| %>
       <% byebug %>
       <div>
         <%= msg %>
       </div>
-  <% end %>
+    <% end %>
 <% end %>
 
 

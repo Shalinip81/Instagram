@@ -6,14 +6,15 @@
   padding: 8px;
 }
 </style>
-<h3>Following Users</h3>
+<h4>Search User:</h4>
 <table>
   <tr>
     <th>Name</th>
     <th>Username</th>
     <th>Profile photo</th>
+    <th> Follow Status</th>
   </tr>
-  <% @followees.each do |f| %>
+  <% @user.each do |f| %>
     <tr>
       <td>
         <%=  f.name %>
@@ -23,9 +24,14 @@
       <td>
         <%= image_tag f.profile_picture, size: "50" %>
       </td>
+      <td>
+        <%= link_to 'Follow', manage_path(token: @token, user:f.id)%>
+        <%= link_to 'unfollow', deletem_path(token: @token, user:f.id)%>
+      </td>
     </tr>
   <% end %>
 </table>
 </html>
+
 
 

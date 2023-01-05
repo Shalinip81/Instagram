@@ -1,16 +1,19 @@
 class PostsController < ApplicationController
 
-  def index
-    @post=Post.all
+  def allpost
+    byebug
+    @user=@current_user
+    @post=@user.posts.all
+    @like=@user.posts
   end
 
   def new
-    byebug
+    # byebug
     @post=Post.new
   end
 
   def create
-    byebug
+    # byebug
     user_id = @current_user.id
     @post = Post.new(post_params)
     @post.user_id=user_id
