@@ -4,7 +4,7 @@ class User < ApplicationRecord
   # starts here
   validates :name, presence: true
   validates :email, uniqueness: true
-  validates :phone_number, uniqueness: true, length: { is: 10 }
+  validates :phone_number,presence:true, uniqueness: true, length: { is: 10 }
   validates :username, uniqueness: true
   validates :password, confirmation: true
   validates :password_confirmation, presence: true
@@ -20,7 +20,7 @@ class User < ApplicationRecord
     UserMailer.welcome(self).deliver_now
   end
   def send_update_email
-    UpdateMailer.upemail(self).deliver_now
+    UpdateMailer.update_email(self).deliver_now
   end
 
 

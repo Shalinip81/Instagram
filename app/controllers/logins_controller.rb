@@ -9,18 +9,20 @@ class LoginsController < ApplicationController
     def create
       @user = User.find_by_username(params[:username])
       if @user.nil?
-        flash.alert = "User not found."
+        flash.alert = "User not found!!"
         render :new and return
       elsif @user.password == params[:password]
         @token = JwtToken.jwt_encode(@user.id)
         redirect_to profile_path(token: @token)
       else
-        flash.alert = "password wrong"
+        flash.alert = "password wrong!!"
         render :new
       end
     end
 
     def logout
+      byebug
+      redirect_to root_path and return
     end
 
 end

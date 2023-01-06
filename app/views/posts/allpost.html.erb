@@ -1,33 +1,14 @@
-
-<html>
-<style type="text/css">
-  td, th {
-  border: 1px solid black;
-  text-align: center;
-  padding: 8px;
-}
-</style>
-<h3>All Posts of <%=@user.name%></h3>
-<p>----------------------------------------------------------</p>
-<table>
-  <tr>
-    <th>Description</th>
-    <th>post_feed</th>
-    <th>Likes</th>
-  </tr>
-  <% @post.each do |f| %>
-    <tr>
-      <% a=@post.find(f.id)%>
-      <td>
-        <%= f.Description %>
-      </td>
-      <td>
-        <%= image_tag f.post_feed, size: "50" %>
-      </td>
-      <td>
-        <%= a.likes.count %>
-      </td>
-    </tr>
+<%byebug%>
+<p>All Posts</p>
+<% @post.each do |f| %>
+      <%= image_tag f.post_feed, size: "50" %>
+      <br>
+      <%= f.Description %>
+      <br>
+      <span>
+      Likes:<%= f.likes.count %>
+      Comments: <%= link_to f.comments.count,comments_path(token:@token,user:f.id) %>
+    </span>
+      <br>
+      <br>
   <% end %>
-</table>
-</html>

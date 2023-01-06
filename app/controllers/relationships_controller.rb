@@ -28,6 +28,14 @@ class RelationshipsController < ApplicationController
     redirect_to search_path(token: @token)
   end
 
+  def show
+    byebug
+    @user=User.find_by_id(params[:user])
+    @posts=@user.posts
+  end
+
+
+
 end
 
 

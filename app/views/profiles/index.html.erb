@@ -1,10 +1,9 @@
 <h4> Welcome to Your Profile </h4>
+<p>Logged in as: <%= @current_user.name %> </p>
+
 <%= image_tag @current_user.profile_picture ,size: "150"%>
-<div style="color:white;background-color: black;">
-<p>Name: <%= @current_user.name %></p>
-<p>Username: <%=@current_user.username %></p>
-<p>Email: <%=@current_user.email %></p>
-<p>Phone_Number: <%=@current_user.phone_number %></p>
+<div>
+<p><%=@current_user.username %></p>
 </div>
 <br>
 
@@ -18,21 +17,22 @@
   <%= link_to 'Create a new post',new_post_path(token: @token) %>
   <br>
   <br>
-  <%=link_to 'Show all posts',allposts_path(token: @token) %>
+  <%=link_to 'Show all posts',allposts_path(token: @token,user:@current_user) %>
 </div>
 <div>
-  <% byebug %>
   <p> Posts: <%= @current_user.posts.count %> </p>
 </div>
 
 <div>
-  <% byebug %>
   <p> Followers: <%= @current_user.followers.count %> </p>
 </div>
 <div>
-  <% byebug %>
   <p> Following: <%= @current_user.followees.count %> </p>
 </div>
 <p><u>Search</u></p>
 <%= link_to 'Find User', search_path(token:@token) %>
+
+<br>
+<%= link_to "logout",logout_path %>
+<br>
 

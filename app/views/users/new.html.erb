@@ -1,4 +1,4 @@
-<h1>User Registration</h1>
+<h1>Create your account!</h1>
 <%= form_with model: @user, data: { turbo: false } do |form| %>
 
   <% if @user.errors.any? %>
@@ -7,7 +7,6 @@
     <% end %>
     <br>
   <% end %>
-  <br>
   <div>
     <%= form.label :Name, "Name:" %>
     <%= form.text_field :name %>
@@ -37,10 +36,14 @@
     <%= form.label :Password_Confirmation, "Password_Confirmation:" %>
     <%= form.password_field :password_confirmation %>
   </div>
-  <br>
+  <p>Select your Account Type:</p>
   <div>
-    <%= form.label :Account_type, "Account_type:" %>
-    <%= form.text_field :account_type %>
+    <%= form.radio_button :type,"Public" %>
+    <%= form.label :Public %>
+  </div>
+  <div>
+    <%= form.radio_button :type ,"Private"%>
+    <%= form.label :Private %>
   </div>
 
   <br>
@@ -62,6 +65,8 @@
   <%= link_to "Login" ,login_path%>
 
 <% end %>
+<br>
+<%= link_to 'Back', :back %>
 
 
 

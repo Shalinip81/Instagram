@@ -1,14 +1,16 @@
+<%byebug %>
+<!-- <% if params[:token].nil? %>
+  <p>plz go to home page </p>
+<% end %> -->
+
 <% if @user.nil? %>
-  <% byebug %>
   <% flash.each do |type ,msg| %>
-      <% byebug %>
       <div>
         <%= msg %>
       </div>
   <% end %>
 <% else @user.password != params[:password] %>
     <% flash.each do |type ,msg| %>
-      <% byebug %>
       <div>
         <%= msg %>
       </div>
@@ -16,7 +18,7 @@
 <% end %>
 
 
-<h1>User Login</h1>
+<h1> Login</h1>
 <%= form_with path:profile_path , data: { turbo: false } do |form| %>
   <br>
   <div>
@@ -38,6 +40,9 @@
   <%= link_to "Signup" , new_user_path %>
 
 <% end %>
+<br>
+<br>
+<%= link_to 'Back', :back %>
 
 
 

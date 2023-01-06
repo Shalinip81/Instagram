@@ -1,4 +1,4 @@
-<html>
+ <html>
 <style type="text/css">
   td, th {
   border: 1px solid black;
@@ -17,7 +17,7 @@
   <% @user.each do |f| %>
     <tr>
       <td>
-        <%=  f.name %>
+        <%= link_to f.name ,showprofile_path(token:@token,user: f.id)%>
       <td>
         <%= f.username %>
       </td>
@@ -29,11 +29,14 @@
           <%= link_to 'unfollow', deletem_path(token: @token, user:f.id)%>
       <%else %>
           <%= link_to 'Follow', manage_path(token: @token, user:f.id)%>
-        <%end%>
+      <%end%>
       </td>
     </tr>
   <% end %>
 </table>
+<br>
+<br>
+<%= link_to 'Back', :back %>
 </html>
 
 

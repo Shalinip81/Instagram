@@ -1,6 +1,6 @@
 class UpdateMailer < ApplicationMailer
 
-  def upemail(user)
+  def update_email(user)
     @user = user
     mail(
       from: "test24mailer@gmail.com",

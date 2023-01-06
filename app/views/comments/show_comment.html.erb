@@ -1,0 +1,22 @@
+<h4>All Comments: </h4>
+<% @post=Post.find_by_id(params[:user]) %>
+
+<% comments=@post.comments %>
+
+<% comments.each do |f| %>
+  <%= f.comment %>
+  <br>
+  <br>
+<% end %>
+
+<%byebug%>
+<h2>Add a comment:</h2>
+<%= form_with url: comments_path(token:@token,post_id:@post.id) do |form| %>
+  <p>
+    <%= form.label :comment %><br>
+    <%= form.text_area :comment %>
+  </p>
+  <p>
+    <%= form.submit %>
+  </p>
+<% end %>

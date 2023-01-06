@@ -1,0 +1,49 @@
+<%if @user.account_type=="Private" %>
+  <%= image_tag @user.profile_picture, size: "100"%>
+  <br>
+  <br>
+  <%= @user.username %>
+  <br>
+  <br>
+  <span>
+    Followers: <%= @user.followers.count %>
+    Following: <%= @user.followees.count %>
+  </span>
+  <br>
+  <br>
+  <mark>This Account is Private!! </mark>
+<%else %>
+  <%= image_tag @user.profile_picture, size: "100"%>
+  <br>
+  <%= @user.username %>
+  <br>
+  <br>
+  <span>
+    Followers: <%= @user.followers.count %>
+    Following: <%= @user.followees.count %>
+  </span>
+  <br>
+  <br>
+  <% @posts.each do |f| %>
+      <%= image_tag f.post_feed, size: "50" %>
+      <br>
+      <%= f.Description %>
+      <br>
+      <span>
+        <%byebug%>
+      <%= link_to "Likes:#{f.likes.count}" , likes_path(token:@token,post_id:f.id,user_id:@user.id)%>
+
+
+      <%= link_to "Comments:#{f.comments.count}" , comments_path(token:@token,user:f.id)%>
+    </span>
+      <br>
+      <br>
+  <% end %>
+<%end%>
+
+
+<%if @current_user.followees.ids.include?(f.id) %>
+          <%= link_to 'unfollow', deletem_path(token: @token, user:f.id)%>
+      <%else %>
+          <%= link_to 'Follow', manage_path(token: @token, user:f.id)%>
+      <%end%>
