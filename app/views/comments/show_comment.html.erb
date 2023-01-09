@@ -4,12 +4,12 @@
 <% comments=@post.comments %>
 
 <% comments.each do |f| %>
+  <p><b><%= f.user.username %>:</b></p>
   <%= f.comment %>
   <br>
   <br>
 <% end %>
 
-<%byebug%>
 <h2>Add a comment:</h2>
 <%= form_with url: comments_path(token:@token,post_id:@post.id) do |form| %>
   <p>
@@ -20,3 +20,5 @@
     <%= form.submit %>
   </p>
 <% end %>
+
+<%= link_to 'Back', profile_path(token:@token) %>

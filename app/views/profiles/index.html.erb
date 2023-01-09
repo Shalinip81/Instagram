@@ -5,7 +5,6 @@
 <div>
 <p><%=@current_user.username %></p>
 </div>
-<br>
 
 <div>
   <%= link_to 'Followers', follower_path(token: @token) %>
@@ -17,7 +16,7 @@
   <%= link_to 'Create a new post',new_post_path(token: @token) %>
   <br>
   <br>
-  <%=link_to 'Show all posts',allposts_path(token: @token,user:@current_user) %>
+  <%=link_to 'Show all posts',all_posts_path(token: @token,user:@current_user) %>
 </div>
 <div>
   <p> Posts: <%= @current_user.posts.count %> </p>
@@ -32,6 +31,7 @@
 <p><u>Search</u></p>
 <%= link_to 'Find User', search_path(token:@token) %>
 
+<br>
 <br>
 <%= link_to "logout",logout_path %>
 <br>

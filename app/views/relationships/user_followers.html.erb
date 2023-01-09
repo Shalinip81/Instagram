@@ -2,21 +2,21 @@
 <style type="text/css">
   td, th {
   border: 1px solid black;
-  text-align: center;
+  text-align: left;
   padding: 8px;
 }
 </style>
-<h3>Following Users</h3>
+<h3>Followers</h3>
 <table>
   <tr>
     <th>Name</th>
     <th>Username</th>
     <th>Profile photo</th>
   </tr>
-  <% @followees.each do |f| %>
+  <% @followers.each do |f| %>
     <tr>
       <td>
-        <%= link_to f.name ,show_profile_path(token:@token,user: f.id)%>
+        <%=  f.name %>
       <td>
         <%= f.username %>
       </td>
@@ -28,7 +28,9 @@
 </table>
 <br>
 <br>
-<%= link_to 'Back', profile_path(token:@token) %>
+<%= link_to 'Back', :back %>
 </html>
+
+
 
 

@@ -3,14 +3,20 @@
 class User < ApplicationRecord
   # starts here
   validates :name, presence: true
-  validates :email, uniqueness: true
-  validates :phone_number,presence:true, uniqueness: true, length: { is: 10 }
+  validates :email, uniqueness: true ,presence:true
   validates :username, uniqueness: true
   validates :password, confirmation: true
   validates :password_confirmation, presence: true
   enum :account_type, %i[Private Public]
   has_one_attached :profile_picture
   validate :avatar_size_validation
+
+  validates :phone_number, presence:true, uniqueness: true,if: :phone_validation
+
+  def phone_validation
+    if phone_number != nil
+    end
+  end
 
   # action mailer
   after_create :send_welcome_email
@@ -39,6 +45,8 @@ class User < ApplicationRecord
   has_many :followers , through: :following_users , dependent: :destroy
 
   has_many :posts
+  has_many :likes
+  has_many :comments
 
 
   private

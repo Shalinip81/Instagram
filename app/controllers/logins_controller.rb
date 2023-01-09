@@ -21,7 +21,6 @@ class LoginsController < ApplicationController
     end
 
     def logout
-      byebug
       redirect_to root_path and return
     end
 

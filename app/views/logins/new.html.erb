@@ -1,7 +1,4 @@
-<%byebug %>
-<!-- <% if params[:token].nil? %>
-  <p>plz go to home page </p>
-<% end %> -->
+
 
 <% if @user.nil? %>
   <% flash.each do |type ,msg| %>
@@ -42,7 +39,7 @@
 <% end %>
 <br>
 <br>
-<%= link_to 'Back', :back %>
+<%= link_to 'Back', root_path %>
 
 
 

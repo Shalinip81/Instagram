@@ -1,7 +1,6 @@
 class PostsController < ApplicationController
 
-  def allpost
-    byebug
+  def all_posts
     @user=User.find_by_id(params[:user])
     @post=@user.posts
   end

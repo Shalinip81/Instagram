@@ -16,7 +16,7 @@
   <% @followers.each do |f| %>
     <tr>
       <td>
-        <%=  f.name %>
+        <%= link_to f.name ,show_profile_path(token:@token,user: f.id)%>
       <td>
         <%= f.username %>
       </td>
@@ -28,7 +28,8 @@
 </table>
 <br>
 <br>
-<%= link_to 'Back', :back %>
+
+<%= link_to 'Back', profile_path(token:@token) %>
 </html>
 
 

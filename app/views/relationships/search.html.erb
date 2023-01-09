@@ -6,7 +6,7 @@
   padding: 8px;
 }
 </style>
-<h4>Search User:</h4>
+<h4>Find User:</h4>
 <table>
   <tr>
     <th>Name</th>
@@ -17,7 +17,7 @@
   <% @user.each do |f| %>
     <tr>
       <td>
-        <%= link_to f.name ,showprofile_path(token:@token,user: f.id)%>
+        <%= link_to f.name ,show_profile_path(token:@token,user: f.id)%>
       <td>
         <%= f.username %>
       </td>
@@ -26,9 +26,9 @@
       </td>
       <td>
       <%if @current_user.followees.ids.include?(f.id) %>
-          <%= link_to 'unfollow', deletem_path(token: @token, user:f.id)%>
+          <%= link_to 'unfollow', unfollow_path(token: @token, user:f.id)%>
       <%else %>
-          <%= link_to 'Follow', manage_path(token: @token, user:f.id)%>
+          <%= link_to 'Follow', follow_path(token: @token, user:f.id)%>
       <%end%>
       </td>
     </tr>
@@ -36,7 +36,7 @@
 </table>
 <br>
 <br>
-<%= link_to 'Back', :back %>
+ <%= link_to 'Back', profile_path(token:@token) %>
 </html>
 
 

@@ -1,13 +1,14 @@
 class LikesController < ApplicationController
   def like
-    byebug
-    a=User.find_by_id(params[:user_id])
-    Like.create(post_id:params[:post_id])
-    redirect_to showprofile_path(token:@token,post:params[:post_id],user:a.id)
+    like=Like.find_by(user_id:@current_user.id,post_id:params[:post_id])
+    if like.present?
+      like.destroy
+      redirect_to show_profile_path(token:@token,user:@current_user.id,post_id:params[:post_id])
+    else
+      Like.create(user_id:@current_user.id,post_id:params[:post_id])
+      redirect_to show_profile_path(token:@token,user:@current_user.id,post_id:params[:post_id])
+    end
   end
 
-  def unlike
-    byebug
-    Like.delete_by(params[:post_id])
-  end
+
 end
