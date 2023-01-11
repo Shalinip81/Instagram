@@ -1,3 +1,4 @@
+ <p><b>Logged in as: <%= @current_user.name %> </b></p>
 <h1>Upload a Post</h1>
 <%= form_with url:posts_path(token: @token) do |form| %>
   <br>

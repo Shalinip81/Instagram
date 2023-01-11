@@ -1,3 +1,19 @@
+<% if params[:name].nil? %>
+  <% flash.each do |type ,msg| %>
+      <div>
+        <%= msg %>
+      </div>
+    <%end%>
+<%else%>
+  <% flash.each do |type ,msg| %>
+    <div>
+      <%= msg %>
+    </div>
+    <%end%>
+<% end %>
+
+
+
 <h1>Create Your Account!!</h1>
 <%= form_with model: @user, data: { turbo: false } do |form| %>
 
@@ -38,13 +54,16 @@
     <%= form.password_field :password_confirmation %>
   </div>
   <br>
+  <p>Select your Account Type:</p>
   <div>
-    <%= form.label :Account_type, "Account_type:" %>
-    <%= form.text_field :account_type %>
+    <%= form.radio_button :account_type,"Public" %>
+    <%= form.label :Public %>
   </div>
-
+  <div>
+    <%= form.radio_button :account_type,"Private"%>
+    <%= form.label :Private %>
+  </div>
   <br>
-
   <div>
     <%= form.label :Profile_Image, "Profile_Image:" %>
     <br>
@@ -65,8 +84,3 @@
 <br>
 <br>
 <%= link_to 'Back', root_path %>
-
-
-
-
-

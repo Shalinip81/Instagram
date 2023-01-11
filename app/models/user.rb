@@ -20,7 +20,7 @@ class User < ApplicationRecord
 
   # action mailer
   after_create :send_welcome_email
-  after_update :send_update_email
+  # after_update :send_update_email
 
   def send_welcome_email
     UserMailer.welcome(self).deliver_now
@@ -52,8 +52,8 @@ class User < ApplicationRecord
   private
 
   def avatar_size_validation
+    return if profile_picture.byte_size.nil?
     return unless profile_picture.byte_size > 2.megabytes
-
     errors.add(:profile_picture, message: 'file size should be less than 2 MB')
   end
 end

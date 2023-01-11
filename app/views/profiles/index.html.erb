@@ -1,3 +1,10 @@
+<html>
+<style type="text/css">
+  div.l{
+    text-align: right;
+  }
+</style>
+<body>
 <h4> Welcome to Your Profile </h4>
 <p>Logged in as: <%= @current_user.name %> </p>
 
@@ -18,21 +25,17 @@
   <br>
   <%=link_to 'Show all posts',all_posts_path(token: @token,user:@current_user) %>
 </div>
-<div>
-  <p> Posts: <%= @current_user.posts.count %> </p>
-</div>
+<span>
+  <p> Posts: <%= @current_user.posts.count %>
+    Followers: <%= @current_user.followers.count %>
+    Following: <%= @current_user.followees.count %> </p>
+</span>
+<%= link_to 'Search User', searches_user_path(token:@token)  %>
+<br>
+<br>
 
-<div>
-  <p> Followers: <%= @current_user.followers.count %> </p>
-</div>
-<div>
-  <p> Following: <%= @current_user.followees.count %> </p>
-</div>
-<p><u>Search</u></p>
-<%= link_to 'Find User', search_path(token:@token) %>
 
 <br>
-<br>
-<%= link_to "logout",logout_path %>
-<br>
+</body>
+</html>
 

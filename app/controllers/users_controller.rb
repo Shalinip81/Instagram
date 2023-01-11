@@ -17,7 +17,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       redirect_to login_path
-      # render "logins#signup"
+      flash.alert = "Registered Successfully!!"
     else
       render :new
     end

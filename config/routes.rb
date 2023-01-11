@@ -3,9 +3,6 @@ Rails.application.routes.draw do
   resources :users
   resources :posts, only: [:new, :create]
   resources :comments, only: [:new, :create]
-  # post "/users/new", to: "users#new"
-  # resource :logins
-  # get "/login", to: "logins"
   get "/profile", to: "profiles#index"
 
 
@@ -27,5 +24,6 @@ Rails.application.routes.draw do
   post "/login", to: "logins#create"
   get "/logout", to: "logins#logout"
 
+  get '/search_user' , to:'searches#search_user', as: :searches_user
 
 end
