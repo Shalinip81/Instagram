@@ -17,7 +17,7 @@ class RelationshipsController < ApplicationController
       redirect_to searches_user_path(token:@token)
     else
       Relationship.create(follower_id:@current_user.id,followee_id:@user.id)
-      redirect_to search_path(token: @token)
+      redirect_to searches_user_path(token: @token)
     end
   end
 

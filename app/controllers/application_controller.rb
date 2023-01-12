@@ -6,12 +6,19 @@ class ApplicationController < ActionController::Base
 
   private
   def expiration
-    begin
-      @token = params[:token]
-      user_id = JwtToken.jwt_decode(params[:token])['id']
-      @current_user = User.find_by_id(user_id)
-    rescue JWT::ExpiredSignature
-      render json: { error: 'Token has expired' }
+    byebug
+    if params[:controller]=="admin/dashboard" and params[:action]=="index"
+      byebug
+      redirect_to admin_root_path
+    else
+      byebug
+      begin
+        @token = params[:token]
+        user_id = JwtToken.jwt_decode(params[:token])['id']
+        @current_user = User.find_by_id(user_id)
+      rescue JWT::ExpiredSignature
+        render json: { error: 'Token has expired' }
+      end
     end
   end
 end
